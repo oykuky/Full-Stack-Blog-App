@@ -1,9 +1,9 @@
 :root{
-    --bg: rgb(78, 10, 85);
+    --bg: rgb(76, 13, 92);
     --text: white;
     --bgSoft: rgb(59, 57, 57);
     --textSoft: rgb(206, 195, 195);
-    --btn: rgb(213, 185, 208);
+    --btn: rgb(244, 234, 242);
 }
 
 *{

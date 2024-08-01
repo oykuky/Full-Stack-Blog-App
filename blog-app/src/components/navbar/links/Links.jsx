@@ -3,6 +3,8 @@ import styles from './links.module.css'
 import NavbarLink from './navbarLink/navbarLink'
 
 function Links() {
+  const session=true;
+  const isAdmin=true;
     const links = [
         {
             title:'Home',
@@ -27,6 +29,18 @@ function Links() {
       {links.map((link,index)=>(
         <NavbarLink item={link} key={index}/>
       ))}
+      {session ? (
+          <>
+            {
+              isAdmin && <NavbarLink item={{title:"Admin",path:"/admin"}} />
+            }
+            <button className={styles.logout} >Logout</button>
+          </>
+
+        ) : (
+          <NavbarLink item={{title:"Login",path:"/login"}} />
+        )
+      }
     </div>
   )
 }
