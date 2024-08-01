@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import React from 'react'
 import styles from './links.module.css'
+import NavbarLink from './navbarLink/navbarLink'
 
 function Links() {
     const links = [
@@ -25,7 +25,7 @@ function Links() {
   return (
     <div className={styles.links}>
       {links.map((link,index)=>(
-        <Link href={link.path} className={styles.link} key={index}>{link.title}</Link>
+        <NavbarLink item={link} key={index}/>
       ))}
     </div>
   )
