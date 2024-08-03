@@ -1,0 +1,17 @@
+.container{
+
+}
+
+.img{
+    flex: 1;
+    height: 500px;
+    position: relative;
+}
+.imgshape{
+    border-radius: 50%; /* Resim tamamen yuvarlak olacak */
+    overflow: hidden; 
+}
+
+.form{
+
+}
