@@ -1,9 +1,52 @@
 .container{
-
-
+    display:flex;
+    align-items: center;
+    gap: 96px;
 }
 
 .textContainer{
-
-    
+    display:flex;
+    flex:1;
+    flex-direction: column;
+    gap:43px;
 }
+
+.title{
+    font-size: 50px;
+}
+
+.subTitle{
+   color:var(--cl);
+   font-size: 26px;
+
+}
+
+.Bigbox{
+    display: flex;
+    gap:53px;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.box h1{
+    color:var(--cl);
+}
+.img{
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .boxes{
+      flex-direction: column;
+      gap: 50px;
+    }
+  }
