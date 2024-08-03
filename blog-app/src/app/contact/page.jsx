@@ -6,7 +6,7 @@ function Contact() {
   return (
     <div  className={styles.container}>
       <div className={styles.img}>
-        <Image src='/contact.jpg' alt="" width={480} height={480} className={styles.imgshape} ></Image>
+        <Image src='/contact.jpg' alt="" width={505} height={505} className={styles.imgshape} ></Image>
       </div>
       <div className={styles.formContainer}>
           <form className={styles.form}>
