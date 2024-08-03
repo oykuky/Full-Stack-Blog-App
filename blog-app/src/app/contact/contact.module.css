@@ -1,10 +1,11 @@
 .container{
-
+    display: flex;
+    gap: 95px;
 }
 
 .img{
     flex: 1;
-    height: 500px;
+    height: 400px;
     position: relative;
 }
 .imgshape{
@@ -12,6 +13,37 @@
     overflow: hidden; 
 }
 
-.form{
-
+.formContainer{
+    flex: 1;
 }
+
+.form{
+   display: flex;
+   flex-direction: column;
+   gap:17px;
+}
+
+.form textarea,
+.form input {
+    padding:19px;
+    background-color: rgb(53, 37, 57);
+    color: var(--text);
+    border:none;
+    outline:none;
+}
+
+.form button{
+    background-color:var(--cl);
+    color:beige;
+    font-size: 19px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 15px;
+}
+@media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  }
