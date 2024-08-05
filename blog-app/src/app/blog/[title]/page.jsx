@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './singlepage.module.css'
 import Image from 'next/image'
+import Postuser from '@/components/postuser/Postuser'
 
 //server-side component
 
@@ -24,10 +25,7 @@ const SinglePage = async({params})=> {
           <h1>{post.title}</h1>
           <div className={styles.detail}>
            <Image src='/about.png' alt='' width={50} height={50} className={styles.avatar} />
-            <div className={styles.detailText} >
-              <span className={styles.detailTitle}>Author</span>
-              <span className={styles.detailValue}>oyku</span>
-            </div>
+           <Postuser userId={post.id} />
             <div className={styles.detailText} >
               <span className={styles.detailTitle}>Published</span>
               <span className={styles.detailValue}>date</span>
