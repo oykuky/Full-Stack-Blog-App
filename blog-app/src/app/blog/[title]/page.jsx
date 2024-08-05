@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './singlepage.module.css'
 import Image from 'next/image'
 
+//server-side component
+
 function SinglePage() {
   return (
     <div className={styles.container}>
