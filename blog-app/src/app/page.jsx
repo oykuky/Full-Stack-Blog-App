@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import styles from './home.module.css'
 import { useRouter } from 'next/navigation';
+
+
 const Home = () => {
   const router=useRouter();
   return <div className={styles.container} >
