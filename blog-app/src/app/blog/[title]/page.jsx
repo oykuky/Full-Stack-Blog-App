@@ -11,7 +11,7 @@ function SinglePage() {
       <div className={styles.textcontainer} >
           <h1>Title</h1>
           <div className={styles.detail}>
-           <Image src='/about.png' alt='' width={50} height={50} />
+           <Image src='/about.png' alt='' width={50} height={50} className={styles.avatar} />
             <div className={styles.detailText} >
               <span className={styles.detailTitle}>Author</span>
               <span className={styles.detailValue}>oyku</span>

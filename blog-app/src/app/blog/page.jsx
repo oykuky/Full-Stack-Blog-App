@@ -18,4 +18,3 @@ function Blog() {
 export default Blog
 
 
-//1.27
