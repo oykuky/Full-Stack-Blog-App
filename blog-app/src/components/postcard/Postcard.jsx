@@ -17,7 +17,7 @@ function Postcard() {
         <div className={styles.bottom} >
           <h1>Title</h1>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem aut ratione itaque!</p>
-          <Link href='' >READ MORE</Link>
+          <Link href='/blog/post' className={styles.link} >READ MORE</Link>
         </div>
       
     </div>

@@ -7,6 +7,8 @@ function Blog() {
     <div className={styles.container}>
       <div className={styles.post}>
       <Postcard/>
+      <Postcard/>
+      <Postcard/>
       </div>
     
     </div>

@@ -1,0 +1,54 @@
+.container{
+    display: flex;
+    gap:95px;
+}
+
+.imgcont{
+  flex: 1;
+  position: relative;
+  height: calc(100vh - 200px);
+}
+.img{
+   object-fit: cover;
+}
+
+.textcontainer{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    gap: 50px;
+}
+
+.textcontainer h1{
+    font-size: 66px;
+}
+
+
+.detail{
+    display: flex;
+    gap: 20px;
+}
+.detailText{
+    display: flex;
+    flex-direction: column;
+    gap:12px;
+}
+
+.detailTitle{
+    font-weight: 900;
+    color: rgb(35, 11, 57);
+}
+
+.detailValue{
+    color: beige;
+}
+
+.textcontainer p{
+    color:white;
+}
+
+@media (max-width:768px){
+    .imgContainer{
+      display: none;
+    }
+  }
