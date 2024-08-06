@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import styles from './singlepage.module.css'
 import Image from 'next/image'
 import Postuser from '@/components/postuser/Postuser'
@@ -25,7 +25,11 @@ const SinglePage = async({params})=> {
           <h1>{post.title}</h1>
           <div className={styles.detail}>
            <Image src='/about.png' alt='' width={50} height={50} className={styles.avatar} />
-           <Postuser userId={post.id} />
+           <Suspense fallback={<div>
+            Loading...
+           </div>} > 
+             <Postuser userId={post.id} />
+           </Suspense>
             <div className={styles.detailText} >
               <span className={styles.detailTitle}>Published</span>
               <span className={styles.detailValue}>date</span>

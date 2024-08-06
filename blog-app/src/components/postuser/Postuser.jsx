@@ -3,7 +3,7 @@ import styles from './postuser.module.css'
 
 
 const getData =async (userId)=>{
-    const resp = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+    const resp = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`,{cache:"no-store"})
       if(!resp.ok){
           throw new Error('Something went wrong')
       }  
