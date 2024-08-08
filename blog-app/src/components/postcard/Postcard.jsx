@@ -8,7 +8,7 @@ function Postcard({post}) {
     <div className={styles.container} >
         <div className={styles.top}>
             <div className={styles.imgCont}>
-                <Image src='/post.png' alt='img' fill className={styles.img} />
+                <Image src={post.img} alt='img' fill className={styles.img} />
             </div>
             <span className={styles.date}>
           08.08.2024

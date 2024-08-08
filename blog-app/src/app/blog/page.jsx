@@ -1,3 +1,4 @@
+import { getPosts } from '@/lib/data';
 import styles from './blog.module.css'
 import Postcard from '@/components/postcard/Postcard'
 
@@ -13,6 +14,7 @@ import Postcard from '@/components/postcard/Postcard'
 const Blog = async () => {
   //FETCH DATA WİTH AN FAKE API
   // const posts = await getData();
+  const posts = await getPosts();
   return (
     <div className={styles.container}>
          {posts.map((post) =>(

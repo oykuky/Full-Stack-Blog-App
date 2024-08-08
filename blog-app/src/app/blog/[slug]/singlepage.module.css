@@ -47,9 +47,7 @@
     color:white;
     font-size: 23px;;
 }
-.avatar{
-    border-radius: 50%;
-}
+
 
 @media (max-width:768px){
     .imgcont{

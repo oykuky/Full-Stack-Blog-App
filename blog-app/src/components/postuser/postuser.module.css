@@ -12,3 +12,7 @@
 .username{
     color: beige;
 }
+
+.avatar{
+    border-radius: 50%;
+}
