@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose"
+import mongoose from "mongoose"
 
 const userShema = new mongoose.Schema({
     username:{
@@ -14,13 +14,11 @@ const userShema = new mongoose.Schema({
         required:true,
         unique:true,
         max:50
-
     },
     password:{
         type:String,
         required:true,
         min:6
-
     },
     img:{
         type:String,
@@ -40,7 +38,6 @@ const postShema = new mongoose.Schema({
         type:String,
         required:true,
     },
-
     desc:{
         type:String,
         required:true,
@@ -63,3 +60,5 @@ const postShema = new mongoose.Schema({
 
 export const User = mongoose.models.User || mongoose.model('User',userShema);
 export const Post = mongoose.models.Post || mongoose.model('Post',postShema);
+
+
