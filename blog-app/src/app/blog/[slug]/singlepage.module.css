@@ -26,12 +26,12 @@
 
 .detail{
     display: flex;
-    gap: 23px;
+    gap: 20px;
 }
 .detailText{
     display: flex;
     flex-direction: column;
-    gap:12px;
+    gap:10px;
 }
 
 .detailTitle{
