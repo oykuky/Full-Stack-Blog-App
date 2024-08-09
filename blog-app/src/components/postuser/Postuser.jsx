@@ -4,14 +4,6 @@ import { getUser } from '@/lib/data';
 import Image from 'next/image';
 
 
-// const getData =async (userId)=>{
-//     const resp = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`,{cache:"no-store"})
-//       if(!resp.ok){
-//           throw new Error('Something went wrong')
-//       }  
-//       return resp.json();
-//   }d
-
 const Postuser = async({userId})=> {
   const user = await getUser(userId);
   return (

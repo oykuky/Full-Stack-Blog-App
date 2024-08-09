@@ -19,7 +19,7 @@ export const getPost = async (slug) => {
     const post = await Post.findOne({ slug });
     return post;
   } catch (err) {
-    console.log(err);
+    console.error("Error fetching post:", err);  // Güncellendi
     throw new Error("Failed to fetch post!");
   }
 };

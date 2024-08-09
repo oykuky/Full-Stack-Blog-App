@@ -17,7 +17,7 @@ function Postcard({post}) {
         <div className={styles.bottom} >
           <h1>{post.title}</h1>
           <p>{post.body}</p>
-          <Link href={`/blog/${post.id}`} className={styles.link} >READ MORE</Link>
+          <Link href={`/blog/${post.slug}`} className={styles.link} >READ MORE</Link>
         </div>
       
     </div>
