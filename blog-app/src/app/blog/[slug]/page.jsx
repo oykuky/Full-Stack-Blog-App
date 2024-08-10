@@ -14,7 +14,7 @@ const SinglePage = async({params})=> {
           <Image src={post?.img || '/about.png'} alt={post?.title || 'Post image'} fill className={styles.img} />
         </div>
         <div className={styles.textcontainer} >
-              <h1>{post?.title}</h1>
+              <h1>{post?.title}</h1>  
               <div className={styles.detail}>
               { post && 
               (<Suspense fallback={<div> Loading... </div>} > 
