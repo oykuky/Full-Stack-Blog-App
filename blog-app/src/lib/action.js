@@ -1,9 +1,9 @@
+   "use server"
 import { revalidatePath } from "next/cache"
 import { Post } from "./modal"
 import { connectToDb } from "./utils"
 
 export const addPost = async (formData) =>{
-    "use server"
     const { title,desc,slug,userId } = Object.fromEntries(formData)
     console.log(title,desc,slug,userId)
 
@@ -21,12 +21,11 @@ export const addPost = async (formData) =>{
 }
 
 export const deletePost = async (formData) =>{
-    "use server"
     const { id } = Object.fromEntries(formData)
   
     try {
         connectToDb();
-        await Post.findById(id);
+        await Post.findByIdAndDelete(id);
         revalidatePath("/blog")   //to show fresh data
         console.log("Deleted from database")
     } catch (error) {
