@@ -2,17 +2,19 @@ import { getPosts } from '@/lib/data';
 import styles from './blog.module.css'
 import Postcard from '@/components/postcard/Postcard'
 
-//FETCH DATA WİTH AN FAKE API
-// const getData =async (title)=>{
-//   const resp = await fetch(`https://jsonplaceholder.typicode.com/posts/${title}`,{next:{revalidate:3600}})
-//     if(!resp.ok){
-//         throw new Error('Something went wrong')
-//     }  
-//     return resp.json();
-// }
+// FETCH DATA WITH AN API
+// const getData = async () => {
+//   const res = await fetch("http://localhost:3000/api/blog", {next:{revalidate:3600}});
+
+//   if (!res.ok) {
+//     throw new Error("Something went wrong");
+//   }
+
+//   return res.json();
+// };
 
 const Blog = async () => {
-  //FETCH DATA WİTH AN FAKE API
+  //FETCH DATA WİTH AN API
   // const posts = await getData();
   const posts = await getPosts();
   return (
