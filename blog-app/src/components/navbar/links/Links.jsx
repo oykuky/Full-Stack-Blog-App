@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import styles from './links.module.css'
 import NavbarLink from './navbarLink/navbarLink'
 import { IoMenuOutline } from "react-icons/io5";
+import { handleLogout } from '@/lib/action';
+
 
 const links = [
   {
@@ -24,8 +26,7 @@ const links = [
   ]
   
 
-function Links() {
-  const session=false;
+const Links = ({session}) => {
   const isAdmin=true;
   const [open,setOpen]=useState(false);
  
@@ -35,12 +36,14 @@ function Links() {
       {links.map((link,index)=>(
         <NavbarLink item={link} key={index}/>
       ))}
-      {session ? (
+      {session?.user ? (
           <>
             {
-              isAdmin && <NavbarLink item={{title:"Admin",path:"/admin"}} />
+              session.user?.isAdmin && <NavbarLink item={{title:"Admin",path:"/admin"}} />
             }
-            <button className={styles.logout} >Logout</button>
+            <form action={handleLogout}>
+              <button className={styles.logout} >Logout</button>
+            </form>
           </>
 
         ) : (
