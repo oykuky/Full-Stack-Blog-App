@@ -17,15 +17,25 @@ function Login() {
       console.error("GitHub authorize error", error);
     }
   };
+  // return (
+  //   <div className={styles.container}>
+  //     <div className={styles.wrapper}>
+  //     <form onSubmit={handleGithubLogin}>
+  //         <button type="submit" className={styles.github}>Login with Github</button>
+  //       </form>
+  //       {/* <LoginForm /> */}
+  //     </div>
+  //   </div>
+  // )
   return (
-    <div className={styles.container}>
-      <div className={styles.wrapper}>
+    <div >
+    
       <form onSubmit={handleGithubLogin}>
           <button type="submit" className={styles.github}>Login with Github</button>
         </form>
-        {/* <LoginForm /> */}
+  
       </div>
-    </div>
+
   )
 }
 
