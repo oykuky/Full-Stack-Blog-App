@@ -18,7 +18,6 @@ export const addPost = async (formData) =>{
     } catch (error) {
         console.log(error.message)
         return {error:"something went wrong"}
-        
     }
 }
 
@@ -36,13 +35,27 @@ export const deletePost = async (formData) =>{
         
     }
 }
+// export const handleGithubLogin = async () => {
+//     "use server"
+//     try {
+//         console.log("Attempting to sign in with GitHub");
+//         await signIn("github", { callbackUrl: `${process.env.NEXTAUTH_URL}/callback/github` });
+//     } catch (error) {
+//         console.log("Github authorize",error)
+//     }
+   
+//   };
 
 export const handleGithubLogin = async () => {
-    "use server";
-    await signIn("github");
+    try {
+      await signIn("github");
+    } catch (error) {
+      console.error("GitHub authorize error", error);
+    }
   };
   
+  
   export const handleLogout = async () => {
-    "use server";
+    "use server"
     await signOut();
   };
