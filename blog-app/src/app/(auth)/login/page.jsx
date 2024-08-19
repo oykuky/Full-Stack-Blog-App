@@ -1,16 +1,15 @@
-import React from 'react'
 
-import { handleGithubLogin } from "@/lib/action";
+import React from 'react'
 import styles from "./login.module.css";
 import { signIn } from '@/lib/auth';
+
 // import LoginForm from '@/components/loginForm/loginForm';
 
 
 function Login() {
 
-  const handleGithubLogin = async (event) => {
+  const handleGithubLogin = async () => {
     "use server"
-    event.preventDefault();
     try {
       await signIn("github");
     } catch (error) {
@@ -35,7 +34,7 @@ function Login() {
         </form>
   
       </div>
-
+   
   )
 }
 
