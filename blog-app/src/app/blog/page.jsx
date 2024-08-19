@@ -17,6 +17,7 @@ const Blog = async () => {
   //FETCH DATA WİTH AN API
   // const posts = await getData();
   const posts = await getPosts();
+  console.log(posts,"POSTLAR")
   return (
     <div className={styles.container}>
          {posts.map((post) =>(

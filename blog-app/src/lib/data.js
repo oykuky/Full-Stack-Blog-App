@@ -1,11 +1,12 @@
 import { Post, User } from "./modal";
 import { connectToDb } from "./utils";
-import { unstable_noStore as noStore } from "next/cache";
+// import { unstable_noStore as noStore } from "next/cache";
 
 export const getPosts = async () => {
   try {
     connectToDb();
     const posts = await Post.find();
+    console.log(posts,"POSTLAR GETPOST METOD İÇİNDE");
     return posts;
   } catch (err) {
     console.log(err);
