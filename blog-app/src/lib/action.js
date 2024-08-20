@@ -35,16 +35,6 @@ export const deletePost = async (formData) =>{
         
     }
 }
-// export const handleGithubLogin = async () => {
-//     "use server"
-//     try {
-//         console.log("Attempting to sign in with GitHub");
-//         await signIn("github", { callbackUrl: `${process.env.NEXTAUTH_URL}/callback/github` });
-//     } catch (error) {
-//         console.log("Github authorize",error)
-//     }
-   
-//   };
 
 export const handleGithubLogin = async () => {
     try {
