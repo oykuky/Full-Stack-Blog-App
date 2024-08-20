@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import styles from './links.module.css'
 import NavbarLink from './navbarLink/navbarLink'
 import { IoMenuOutline } from "react-icons/io5";
-import { handleLogout } from '@/lib/action';
+import { signOut } from 'next-auth/react';
 
 
 const links = [
@@ -27,8 +27,10 @@ const links = [
   
 
 const Links = ({session}) => {
-  const isAdmin=true;
   const [open,setOpen]=useState(false);
+  const signout = () => {
+    signOut("github")
+  }
  
   return (
   <div className={styles.container}> 
@@ -41,9 +43,7 @@ const Links = ({session}) => {
             {
               session.user?.isAdmin && <NavbarLink item={{title:"Admin",path:"/admin"}} />
             }
-            <form action={handleLogout}>
-              <button className={styles.logout} >Logout</button>
-            </form>
+              <button onClick={signout} className={styles.logout} >Logout</button>
           </>
 
         ) : (

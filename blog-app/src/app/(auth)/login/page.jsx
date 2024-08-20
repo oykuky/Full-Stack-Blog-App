@@ -14,9 +14,6 @@ function Login() {
     }
    
   }
-    const signout = () => {
-      signOut("github")
-    }
     const {data : session} = useSession();
     console.log(session,"SESSİON")
 
@@ -25,7 +22,6 @@ function Login() {
       <div className={styles.wrapper}>
         <LoginForm />
         <button onClick={handleClick} className={styles.github}>Login with Github</button>
-        <button onClick={signout} className={styles.github}>Sign out</button>
       </div>
     </div>
   )
