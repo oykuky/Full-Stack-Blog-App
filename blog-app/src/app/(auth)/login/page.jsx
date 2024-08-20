@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
 import styles from "./login.module.css";
-// import { signIn } from '@/lib/auth';
 import { signIn,signOut, useSession } from 'next-auth/react';
+import LoginForm from '@/components/loginForm/loginForm';
 
 
 function Login() {
@@ -14,19 +14,18 @@ function Login() {
     }
    
   }
-  const signout = () => {
-    signOut("github")
-  }
-  const {data : session} = useSession();
-  console.log(session,"kmkmspdfkewfko")
+    const signout = () => {
+      signOut("github")
+    }
+    const {data : session} = useSession();
+    console.log(session,"SESSİON")
 
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        {/* <LoginForm /> */}
+        <LoginForm />
         <button onClick={handleClick} className={styles.github}>Login with Github</button>
-        <button onClick={signout} className={styles.github}>signout</button>
-
+        <button onClick={signout} className={styles.github}>Sign out</button>
       </div>
     </div>
   )

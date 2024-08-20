@@ -7,9 +7,9 @@
   
   .form input{
     padding: 20px;
-    background-color: var(--bg);
+    background-color:rgb(61, 60, 60);
     color: var(--textColor);
-    border: none;
+    border: solid 2px slateblue;
     border-radius: 5px;
   }
   
@@ -17,7 +17,7 @@
     padding: 20px;
     cursor: pointer;
     background-color: var(--btn);
-    color: var(--textColor);
+    color:black;
     font-weight: bold;
     border: none;
     border-radius: 5px;
