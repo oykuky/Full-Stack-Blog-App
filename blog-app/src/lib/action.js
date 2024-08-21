@@ -1,6 +1,6 @@
 "use server"
 import { revalidatePath } from "next/cache"
-import { Post } from "./modal"
+import { Post, User } from "./modal"
 import { connectToDb } from "./utils"
 import { signIn, signOut } from "./auth";
 // import bcrypt from "bcryptjs";
@@ -23,7 +23,6 @@ export const addPost = async (formData) =>{
 
 export const deletePost = async (formData) =>{
     const { id } = Object.fromEntries(formData)
-  
     try {
         connectToDb();
         await Post.findByIdAndDelete(id);
@@ -36,16 +35,28 @@ export const deletePost = async (formData) =>{
     }
 }
 
-export const handleGithubLogin = async () => {
-    try {
-      await signIn("github");
-    } catch (error) {
-      console.error("GitHub authorize error", error);
+export const register = async (formData) => {
+  const {username,email,img,password,passwordRepeat} = Object.fromEntries(formData);
+
+  if(passwordRepeat != password) {
+    return "Password does not match!"
+  }
+  try {
+    connectToDb();
+    const user = await User.findOne({username});
+    if(user){
+      return "User already exists";
     }
-  };
-  
-  
-  export const handleLogout = async () => {
-    "use server"
-    await signOut();
-  };
+    const newUser = new User({
+      username,
+      email,
+      password,
+      img,
+    })
+    await newUser.save();
+    console.log("new user saved successfully to db");
+  } catch (error) {
+    console.log(err)
+    return {error: "something went wrong"}
+  }
+}
