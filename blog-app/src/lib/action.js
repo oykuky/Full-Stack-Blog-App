@@ -34,12 +34,13 @@ export const deletePost = async (formData) =>{
         
     }
 }
-
+//formData: form verilerini içerir.
+//Object.fromEntries(formData): Form verilerini bir nesneye dönüştürür.
 export const register = async (formData) => {
+   // formData'dan username, email, img, password ve passwordRepeat alanlarını alır.
   const {username,email,img,password,passwordRepeat} = Object.fromEntries(formData);
-
   if(passwordRepeat != password) {
-    return "Password does not match!"
+    return "Password does not match!";
   }
   try {
     connectToDb();
@@ -55,8 +56,10 @@ export const register = async (formData) => {
     })
     await newUser.save();
     console.log("new user saved successfully to db");
+    return { success: true };
+  
   } catch (error) {
-    console.log(err)
+    console.log(error)
     return {error: "something went wrong"}
   }
 }
