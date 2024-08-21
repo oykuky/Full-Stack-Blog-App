@@ -1,4 +1,4 @@
-"use client";
+
 
 import { login } from "@/lib/action";
 import styles from "./loginForm.module.css";

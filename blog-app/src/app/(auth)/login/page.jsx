@@ -15,7 +15,7 @@ function Login() {
    
   }
     const {data : session} = useSession();
-    console.log(session,"SESSİON")
+    // console.log(session,"SESSİON")
 
   return (
     <div className={styles.container}>
