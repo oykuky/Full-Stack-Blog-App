@@ -35,7 +35,7 @@
 }
 .form input{
     background-color: var(--bgSoft);
-    color: rgb(18, 17, 17);
+    color: white;
     font-size: 17px;
     padding: 12px;
     border-radius: 15px;
