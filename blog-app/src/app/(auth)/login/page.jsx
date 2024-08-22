@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import styles from "./login.module.css";
-import { signIn,signOut, useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import LoginForm from '@/components/loginForm/loginForm';
 
 
@@ -12,7 +12,6 @@ function Login() {
     } catch (error) {
       console.log(error)
     }
-   
   }
     const {data : session} = useSession();
     // console.log(session,"SESSİON")

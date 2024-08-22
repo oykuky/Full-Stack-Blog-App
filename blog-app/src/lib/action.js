@@ -2,8 +2,10 @@
 import { revalidatePath } from "next/cache"
 import { Post, User } from "./modal"
 import { connectToDb } from "./utils"
-import { signIn, signOut } from "./auth";
 import bcrypt from "bcryptjs";
+// import { signIn } from "next-auth/react";
+import { signIn } from "./auth";
+
 
 export const addPost = async (formData) =>{
     const { title,desc,slug,userId } = Object.fromEntries(formData)
@@ -40,13 +42,13 @@ export const register = async (formData) => {
    // formData'dan username, email, img, password ve passwordRepeat alanlarını alır.
   const {username,email,img,password,passwordRepeat} = Object.fromEntries(formData);
   if(passwordRepeat != password) {
-    return "Password does not match!";
+    return {error: "Password does not match!"};
   }
   try {
     connectToDb();
     const user = await User.findOne({username});
     if(user){
-      return "User already exists";
+      return {error: "User already exists"};
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -68,17 +70,39 @@ export const register = async (formData) => {
   }
 }
 
+// export const login = async (formData) => {
+//   const { username, password } = Object.fromEntries(formData);
+
+//   try {
+//     await signIn("credentials", username, password );
+//     console.log("user successfully to login");
+//     return { success: true };
+//   } catch (err) {
+//     console.log(err);
+//     return {error: "something went wrong"}
+//   }
+// };
+
 export const login = async (formData) => {
   const { username, password } = Object.fromEntries(formData);
 
   try {
-    await signIn("credentials", { username, password });
-  } catch (err) {
-    console.log(err);
+    const result = await signIn("credentials", {
+      redirect: false, // Bu, sayfanın otomatik olarak yeniden yönlendirilmesini engeller
+      username,
+      password,
+    });
 
-    // if (err.message.includes("CredentialsSignin")) {
-    //   return { error: "Invalid username or password" };
-    // }
-    // throw err;
+    console.log('SignIn Result:', result);
+
+    if (result?.error) {
+      return { error: result.error || "Invalid username or password" };
+    } else {
+      console.log("User successfully logged in");
+      return { success: true };
+    }
+  } catch (err) {
+    console.error('Login Function Error:', err); // Daha ayrıntılı hata çıktısı
+    return { error: "Something went wrong" };
   }
 };

@@ -1,50 +1,52 @@
 import NextAuth from "next-auth"
 import GithubProvider from 'next-auth/providers/github';
-import CredentialsProvider from 'next-auth/providers/credentials';
+import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
 import { User } from "./modal";
 import bcrypt from "bcryptjs";
 
-const login = async(credentials) => {
+const login = async (credentials) => {
   try {
     connectToDb();
-    const user = await User.findOne({username: credentials.username})
-    if (!user){
-      throw new Error("User not found")
-    }
+    const user = await User.findOne({ username: credentials.username });
 
-    const isPasswordTrue = await bcrypt.compare(
+    if (!user) throw new Error("Wrong credentials!");
+
+    const isPasswordCorrect = await bcrypt.compare(
       credentials.password,
       user.password
-    )
-    if (!isPasswordTrue){
-      throw new Error("Password is incorrect")
-    }
-    return user;
-  } catch (error) {
-    console.log(error);
-    throw new Error("Failed to login");
-  }
-}
+    );
 
-export const { handlers : { GET,POST}, auth, signIn, signOut} = NextAuth({ 
+    if (!isPasswordCorrect) throw new Error("Wrong credentials!");
+
+    return user;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to login!");
+  }
+};
+
+
+export const { handlers : { GET,POST},signIn,auth} = NextAuth({ 
     providers:[
       GithubProvider({
         clientId: process.env.GITHUB_CLIENT_ID ,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
      }),
-      CredentialsProvider({
-        async authorize(credentials){
-          try {
-            const user = await login(credentials);
-            return user;
-          } catch (error) {
-            return null;
+     CredentialsProvider({
+      async authorize(credentials) {
+        try {
+          const user = await login(credentials); // Burada login fonksiyonunuz kullanıcıyı doğrulamalıdır.
+          if (!user) {
+            throw new Error("Invalid credentials");
           }
+          return user;
+        } catch (error) {
+          console.log("Authorize Error:", error);
+          return null;
         }
-      })
-
-      
+      }
+    })
      ],
      callbacks:{
       async signIn({user,account,profile}){  // kullanıcı,hesap ve profil bilgilerini getirir
