@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
 import { User } from "./modal";
 import bcrypt from "bcryptjs";
+import { authconfig } from "./auth.config";
 
 const login = async (credentials) => {
   try {
@@ -26,6 +27,7 @@ const login = async (credentials) => {
 };
 
 export const { handlers : { GET,POST},signIn,signOut,auth} = NextAuth({ 
+    ...authconfig,
     providers:[
       GithubProvider({
         clientId: process.env.GITHUB_CLIENT_ID ,
@@ -76,7 +78,8 @@ export const { handlers : { GET,POST},signIn,signOut,auth} = NextAuth({
           }
         }
         return true;
-      } 
+      },
+      ...authconfig.callbacks,
      }
     //  kullanıcı giriş yapmaya çalıştığında çalışır ve GitHub üzerinden giriş yapan kullanıcıların bilgilerini alır. Eğer kullanıcı veritabanında yoksa, onu oluşturur
     });
