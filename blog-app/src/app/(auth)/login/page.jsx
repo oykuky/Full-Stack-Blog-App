@@ -14,12 +14,12 @@ function Login() {
     }
   }
     const {data : session} = useSession();
-    // console.log(session,"SESSİON")
+    console.log(session,"SESSİON")
 
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <LoginForm />
+        <LoginForm/>
         <button onClick={handleClick} className={styles.github}>Login with Github</button>
       </div>
     </div>

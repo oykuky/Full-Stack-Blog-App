@@ -1,42 +1,48 @@
 'use client';
-import { useRouter } from  'next/navigation'
-import { login } from "@/lib/action";
+
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react'; // Doğru yerden import edin
 import styles from "./loginForm.module.css";
-import { useFormState } from "react-dom";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-import React from 'react'
+import React from 'react';
 
 const LoginForm = () => {
-  const [state, formAction] = useFormState(login, undefined);
-  const {data : session} = useSession();
   const router = useRouter();
-
   const handleSubmit = async (event) => {
     event.preventDefault(); 
     const formData = new FormData(event.target); 
-    const response = await login(formData);
-    console.log("Login Response:", response);
-    if (response.success) {
-      router.push('/'); 
-    } else if (response.error) {
-      alert(response.error); 
+    const username = formData.get('username');
+    const password = formData.get('password');
+    
+    try {
+      const result = await signIn('credentials', {
+        username,
+        password,
+        redirect: false, // Bu ayar ile yönlendirme yapılmaz
+      });
+
+      if (result?.error) {
+        alert(result.error); // Giriş hatasını göster
+      } else {
+        router.push('/'); // Başarılı girişten sonra yönlendirme
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Something went wrong');
     }
   };
-  
 
-
-  console.log("SESSİON LOGİN BAKALIM", session)
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <input type="text" placeholder="username" name="username" />
-      <input type="password" placeholder="password" name="password" />
-      <button>Login</button>
-      {state?.error}
-      <Link href="/register">
-        {"Don't have an account?"} <b>Register</b>
-      </Link>
-    </form>
+    <div>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input type="text" placeholder="username" name="username" />
+        <input type="password" placeholder="password" name="password" />
+        <button>Login</button>
+        <Link href="/register">
+          {"Don't have an account?"} <b>Register</b>
+        </Link>
+      </form>
+    </div>
   );
 };
 
