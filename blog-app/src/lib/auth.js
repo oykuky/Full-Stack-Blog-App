@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs";
 
 const login = async (credentials) => {
   try {
-    connectToDb();
+    await connectToDb(); // Bağlantı başarılı mı?
     const user = await User.findOne({ username: credentials.username });
 
     if (!user) throw new Error("Wrong credentials!");
@@ -18,34 +18,39 @@ const login = async (credentials) => {
     );
 
     if (!isPasswordCorrect) throw new Error("Wrong credentials!");
-
     return user;
   } catch (err) {
-    console.log(err);
+    console.log('Login Error:', err.message); // Hata mesajını loglayın
     throw new Error("Failed to login!");
   }
 };
 
-
-export const { handlers : { GET,POST},signIn,auth} = NextAuth({ 
+export const { handlers : { GET,POST},signIn,signOut,auth} = NextAuth({ 
     providers:[
       GithubProvider({
         clientId: process.env.GITHUB_CLIENT_ID ,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
      }),
      CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" }
+      },
       async authorize(credentials) {
         try {
-          const user = await login(credentials); // Burada login fonksiyonunuz kullanıcıyı doğrulamalıdır.
-          if (!user) {
-            throw new Error("Invalid credentials");
+          const user = await login(credentials);
+          if (user) {
+            return user;  // Bu kısımda kullanıcıyı döndürmelisiniz.
+          } else {
+            return null;
           }
-          return user;
         } catch (error) {
           console.log("Authorize Error:", error);
           return null;
         }
       }
+      
     })
      ],
      callbacks:{
