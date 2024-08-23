@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs";
 
 const login = async (credentials) => {
   try {
-    await connectToDb(); // Bağlantı başarılı mı?
+    await connectToDb();
     const user = await User.findOne({ username: credentials.username });
 
     if (!user) throw new Error("Wrong credentials!");
