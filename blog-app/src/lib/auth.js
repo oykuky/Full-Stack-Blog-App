@@ -6,6 +6,7 @@ import { User } from "./modal";
 import bcrypt from "bcryptjs";
 import { authconfig } from "./auth.config";
 
+// Kullanıcı girişini doğrulayan ve kullanıcıyı döndüren asenkron fonksiyon
 const login = async (credentials) => {
   try {
     await connectToDb();
@@ -27,12 +28,13 @@ const login = async (credentials) => {
 };
 
 export const { handlers : { GET,POST},signIn,signOut,auth} = NextAuth({ 
-    ...authconfig,
+    ...authconfig,// Ek yapılandırma ayarlarını içe aktarır
     providers:[
       GithubProvider({
         clientId: process.env.GITHUB_CLIENT_ID ,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
      }),
+     // Kullanıcı adı ve şifre ile giriş yapmayı sağlayan kimlik doğrulama sağlayıcısı
      CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -56,6 +58,7 @@ export const { handlers : { GET,POST},signIn,signOut,auth} = NextAuth({
     })
      ],
      callbacks:{
+       // Kullanıcı oturum açmaya çalıştığında çalışan geri çağırma fonksiyonu
       async signIn({user,account,profile}){  // kullanıcı,hesap ve profil bilgilerini getirir
         console.log(user,account,profile)
          // Eğer kullanıcı GitHub üzerinden giriş yapıyorsa
@@ -81,5 +84,6 @@ export const { handlers : { GET,POST},signIn,signOut,auth} = NextAuth({
       },
       ...authconfig.callbacks,
      }
-    //  kullanıcı giriş yapmaya çalıştığında çalışır ve GitHub üzerinden giriş yapan kullanıcıların bilgilerini alır. Eğer kullanıcı veritabanında yoksa, onu oluşturur
+    //  kullanıcı giriş yapmaya çalıştığında çalışır ve GitHub üzerinden giriş yapan kullanıcıların bilgilerini alır. 
+    // Eğer kullanıcı veritabanında yoksa, onu oluşturur
     });

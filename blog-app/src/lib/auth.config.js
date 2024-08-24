@@ -11,17 +11,19 @@ export const authconfig = {
         }
         return token;
       },
+      // Oturum başlatıldığında çalışan geri çağırma fonksiyonu
       async session({ session, token }) {
         if (token) {
-          session.user.id = token.id;
+          session.user.id = token.id; // JWT'deki kullanıcı kimliğini oturuma ekler
           session.user.isAdmin = token.isAdmin;
         }
         return session;
       },
+       // Sayfa erişimi kontrol eden geri çağırma fonksiyonu
       authorized({ auth, request }) {
         const user = auth?.user;
+        const isOnBlogPage = request.nextUrl?.pathname.startsWith("/blog");// Kullanıcının blog sayfasına erişmeye çalışıp çalışmadığını kontrol eder
         const isOnAdminPanel = request.nextUrl?.pathname.startsWith("/admin");
-        const isOnBlogPage = request.nextUrl?.pathname.startsWith("/blog");
         const isOnLoginPage = request.nextUrl?.pathname.startsWith("/login");
   
         // ONLY ADMIN CAN REACH THE ADMIN DASHBOARD
@@ -31,9 +33,9 @@ export const authconfig = {
         }
   
         // ONLY AUTHENTICATED USERS CAN REACH THE BLOG PAGE
-  
-        if (isOnBlogPage && !user) {
-          return false;
+        // Kullanıcı oturum açmamışsa, blog sayfasına erişimi engeller
+        if (isOnBlogPage && !user) {  
+          return false;  
         }
   
         // ONLY UNAUTHENTICATED USERS CAN REACH THE LOGIN PAGE
@@ -42,7 +44,7 @@ export const authconfig = {
           return Response.redirect(new URL("/", request.nextUrl));
         }
   
-        return true
+        return true;  // Diğer tüm durumlar için erişime izin verir
       },
     },
   };
